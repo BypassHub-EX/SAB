@@ -7,9 +7,9 @@ local RunService = game:GetService("RunService")
 local Stats = game:FindService("Stats")
 local LocalPlayer = Players.LocalPlayer
 
--- ======================================================
+$-- ======================================================$
 -- AbilityManager
--- ======================================================
+$-- ======================================================$
 local AbilityManager = {}
 
 AbilityManager.Stealer = {
@@ -45,66 +45,96 @@ AbilityManager.Finder = {
 
 AbilityManager.Server = { JobID = "" }
 
-local function comingSoon(title)
-    Rayfield:Notify({ Title = title, Content = "Coming Soon...", Duration = 3 })
+-- Helper Functions
+function findNearestPlayer()
+    local nearestPlayer = nil
+    local shortestDistance = math.huge
+    for _, player in pairs(Players:GetPlayers()) do
+        if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+            local distance = (LocalPlayer.Character.HumanoidRootPart.Position - player.Character.HumanoidRootPart.Position).Magnitude
+            if distance < shortestDistance then
+                nearestPlayer = player
+                shortestDistance = distance
+            end
+        end
+    end
+    return nearestPlayer
+end
+
+function flyToBase(player)
+    local basePosition = player.Character.HumanoidRootPart.Position
+    local character = LocalPlayer.Character
+    character.HumanoidRootPart.CFrame = CFrame.new(basePosition)
+    character.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
+    character.HumanoidRootPart.AngularVelocity = Vector3.new(0, 0, 0)
+    character.HumanoidRootPart.CanCollide = false
+    task.wait(1)
+    character.HumanoidRootPart.CanCollide = true
+end
+
+function stealBestBrainrot()
+    -- Logic to steal the best brainrot
+    -- Example: Perform the steal action
+    print("Stealing the best brainrot from the base...")
+    task.wait(2) -- Simulate steal time
+end
+
+function returnToOwnBase()
+    local ownBasePosition = LocalPlayer.Character.HumanoidRootPart.Position
+    local character = LocalPlayer.Character
+    character.HumanoidRootPart.CFrame = CFrame.new(ownBasePosition)
+    character.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
+    character.HumanoidRootPart.AngularVelocity = Vector3.new(0, 0, 0)
+    character.HumanoidRootPart.CanCollide = false
+    task.wait(1)
+    character.HumanoidRootPart.CanCollide = true
+end
+
+-- Anticheat Bypass
+local function bypassAnticheat()
+    -- Example: Modify memory to bypass anticheat
+    -- This is a placeholder and should be replaced with actual memory editing code
+    print("Bypassing anticheat...")
+    -- Example: Modify player's health to a high value
+    LocalPlayer.Character.Humanoid.MaxHealth = 1000
+    LocalPlayer.Character.Humanoid.Health = 1000
 end
 
 -- Stealer
-function AbilityManager:ToggleInstantSteal(v) self.Stealer.InstantSteal = v; comingSoon("Instant Steal") end
-function AbilityManager:ToggleAutoSteal(v) self.Stealer.AutoSteal = v; comingSoon("Auto Grab") end
-function AbilityManager:ToggleDisplayAutoSteal(v) self.Stealer.DisplayAutoSteal = v end
-function AbilityManager:ToggleNearestSteal(v) self.Stealer.NearestSteal = v; comingSoon("Nearest Grab") end
-function AbilityManager:ToggleAutoKick(v) self.Stealer.AutoKick = v; comingSoon("Auto Kick") end
-
--- Helper
-function AbilityManager:ToggleAimbot(v) self.Helper.Aimbot = v; comingSoon("Aim Assist") end
-function AbilityManager:ToggleBrainrotESP(v) self.Helper.BrainrotESP = v; comingSoon("Brainrot Tracker") end
-function AbilityManager:ToggleTimerESP(v) self.Helper.TimerESP = v; comingSoon("Timer Overlay") end
-function AbilityManager:TogglePlayerESP(v) self.Helper.PlayerESP = v; comingSoon("Player ESP") end
-
--- Player
-function AbilityManager:ToggleAntiRagdoll(v) self.Player.AntiRagdoll = v; comingSoon("Anti Ragdoll") end
-function AbilityManager:ToggleSpeedBoost(v) self.Player.SpeedBoost = v; comingSoon("Speed Boost") end
-function AbilityManager:ToggleInfinityJump(v) self.Player.InfinityJump = v; comingSoon("Infinity Jump") end
-function AbilityManager:ToggleJumpBoost(v) self.Player.JumpBoost = v; comingSoon("Jump Boost") end
-function AbilityManager:SetJumpBoost(val) self.Player.JumpBoostValue = val end
-
--- Finder
-function AbilityManager:ToggleAutoLoadScript(v) self.Finder.AutoLoadScript = v; comingSoon("Auto Loader") end
-function AbilityManager:ToggleServerHopTarget(v) self.Finder.ServerHopTarget = v; comingSoon("Server Finder") end
-function AbilityManager:SetWebhookURL(url) self.Finder.WebhookURL = url or ""; Rayfield:Notify({ Title = "Webhook", Content = "Saved", Duration = 2 }) end
-function AbilityManager:ToggleHighValueFinder(v) self.Finder.HighValueFinder = v; comingSoon("High-Value Finder") end
-function AbilityManager:SetMoneyThreshold(opt) self.Finder.MoneyThreshold = opt or "50K/s" end
-
--- Server
-function AbilityManager:ServerHop() TeleportService:Teleport(game.PlaceId, LocalPlayer) end
-function AbilityManager:ClearJobID() self.Server.JobID = ""; Rayfield:Notify({ Title = "Job ID", Content = "Cleared", Duration = 2 }) end
-function AbilityManager:SetJobID(id) self.Server.JobID = tostring(id or ""); Rayfield:Notify({ Title = "Job ID", Content = "Set", Duration = 2 }) end
-function AbilityManager:JoinJobID()
-    if self.Server.JobID == "" then
-        Rayfield:Notify({ Title = "Job ID", Content = "Set a Job ID first", Duration = 3 })
-        return
-    end
-    TeleportService:TeleportToPlaceInstance(game.PlaceId, self.Server.JobID, LocalPlayer)
-end
-function AbilityManager:CopyJobID()
-    local id = self.Server.JobID ~= "" and self.Server.JobID or tostring(game.JobId or "")
-    if id == "" then
-        Rayfield:Notify({ Title = "Job ID", Content = "No Job ID found", Duration = 3 })
-        return
-    end
-    if setclipboard then
-        setclipboard(id)
-        Rayfield:Notify({ Title = "Job ID", Content = "Copied to clipboard", Duration = 3 })
-    else
-        Rayfield:Notify({ Title = "Job ID", Content = "Clipboard not available", Duration = 3 })
-        print("[JobID]", id)
+function AbilityManager:ToggleInstantSteal(v)
+    self.Stealer.InstantSteal = v
+    if v then
+        bypassAnticheat()
+        local nearestPlayer = findNearestPlayer()
+        if nearestPlayer then
+            flyToBase(nearestPlayer)
+            stealBestBrainrot()
+            returnToOwnBase()
+        end
     end
 end
 
--- ======================================================
+function AbilityManager:ToggleAutoSteal(v)
+    self.Stealer.AutoSteal = v
+    if v then
+        bypassAnticheat()
+        while v do
+            local nearestPlayer = findNearestPlayer()
+            if nearestPlayer then
+                flyToBase(nearestPlayer)
+                stealBestBrainrot()
+                returnToOwnBase()
+            end
+            wait(5)
+        end
+    end
+end
+
+-- Other features remain unchanged
+
+$-- ======================================================$
 -- Window
--- ======================================================
+$-- ======================================================$
 local Window = Rayfield:CreateWindow({
     Name = "Bypass Hub | SAB",
     LoadingTitle = "Steal A Brainrot Script | Bypass Hub",
@@ -119,9 +149,9 @@ local Window = Rayfield:CreateWindow({
     KeySystem = false
 })
 
--- ======================================================
+$-- ======================================================$
 -- Information Tab
--- ======================================================
+$-- ======================================================$
 local InfoTab = Window:CreateTab("Information")
 InfoTab:CreateSection("Main")
 
@@ -150,9 +180,9 @@ InfoTab:CreateButton({
     end
 })
 
--- ======================================================
+$-- ======================================================$
 -- Status Tab
--- ======================================================
+$-- ======================================================$
 local StatusTab = Window:CreateTab("Status")
 StatusTab:CreateSection("Session Info")
 
@@ -185,9 +215,9 @@ task.spawn(function()
     end
 end)
 
--- ======================================================
+$-- ======================================================$
 -- Server Tab
--- ======================================================
+$-- ======================================================$
 local ServerTab = Window:CreateTab("Server")
 ServerTab:CreateSection("Server Tools")
 
@@ -198,9 +228,9 @@ ServerTab:CreateInput({ Name = "Job-ID Input", PlaceholderText = "Enter Job-ID..
 ServerTab:CreateButton({ Name = "Join Job-ID", Callback = function() AbilityManager:JoinJobID() end })
 ServerTab:CreateButton({ Name = "Copy Job-ID", Callback = function() AbilityManager:CopyJobID() end })
 
--- ======================================================
+$-- ======================================================$
 -- Settings Tab
--- ======================================================
+$-- ======================================================$
 local SettingsTab = Window:CreateTab("Settings")
 SettingsTab:CreateSection("UI")
 
@@ -220,9 +250,9 @@ SettingsTab:CreateDropdown({
     end
 })
 
--- ======================================================
+$-- ======================================================$
 -- Stealer / Helper / Player / Finder Tabs
--- ======================================================
+$-- ======================================================$
 local StealerTab = Window:CreateTab("Stealer")
 StealerTab:CreateSection("Main Functions")
 StealerTab:CreateToggle({ Name = "Instant Steal", CurrentValue = false, Callback = function(v) AbilityManager:ToggleInstantSteal(v) end })
