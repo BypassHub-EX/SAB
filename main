@@ -1,0 +1,250 @@
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
+assert(Rayfield, "Failed to load Rayfield")
+
+local Players = game:GetService("Players")
+local TeleportService = game:GetService("TeleportService")
+local RunService = game:GetService("RunService")
+local Stats = game:FindService("Stats")
+local LocalPlayer = Players.LocalPlayer
+
+-- ======================================================
+-- AbilityManager
+-- ======================================================
+local AbilityManager = {}
+
+AbilityManager.Stealer = {
+    InstantSteal = false,
+    AutoSteal = false,
+    DisplayAutoSteal = false,
+    NearestSteal = false,
+    AutoKick = false
+}
+
+AbilityManager.Helper = {
+    Aimbot = false,
+    BrainrotESP = false,
+    TimerESP = false,
+    PlayerESP = false
+}
+
+AbilityManager.Player = {
+    AntiRagdoll = false,
+    SpeedBoost = false,
+    InfinityJump = false,
+    JumpBoost = false,
+    JumpBoostValue = 50
+}
+
+AbilityManager.Finder = {
+    AutoLoadScript = false,
+    ServerHopTarget = false,
+    WebhookURL = "",
+    HighValueFinder = false,
+    MoneyThreshold = "50K/s"
+}
+
+AbilityManager.Server = { JobID = "" }
+
+local function comingSoon(title)
+    Rayfield:Notify({ Title = title, Content = "Coming Soon...", Duration = 3 })
+end
+
+-- Stealer
+function AbilityManager:ToggleInstantSteal(v) self.Stealer.InstantSteal = v; comingSoon("Instant Steal") end
+function AbilityManager:ToggleAutoSteal(v) self.Stealer.AutoSteal = v; comingSoon("Auto Grab") end
+function AbilityManager:ToggleDisplayAutoSteal(v) self.Stealer.DisplayAutoSteal = v end
+function AbilityManager:ToggleNearestSteal(v) self.Stealer.NearestSteal = v; comingSoon("Nearest Grab") end
+function AbilityManager:ToggleAutoKick(v) self.Stealer.AutoKick = v; comingSoon("Auto Kick") end
+
+-- Helper
+function AbilityManager:ToggleAimbot(v) self.Helper.Aimbot = v; comingSoon("Aim Assist") end
+function AbilityManager:ToggleBrainrotESP(v) self.Helper.BrainrotESP = v; comingSoon("Brainrot Tracker") end
+function AbilityManager:ToggleTimerESP(v) self.Helper.TimerESP = v; comingSoon("Timer Overlay") end
+function AbilityManager:TogglePlayerESP(v) self.Helper.PlayerESP = v; comingSoon("Player ESP") end
+
+-- Player
+function AbilityManager:ToggleAntiRagdoll(v) self.Player.AntiRagdoll = v; comingSoon("Anti Ragdoll") end
+function AbilityManager:ToggleSpeedBoost(v) self.Player.SpeedBoost = v; comingSoon("Speed Boost") end
+function AbilityManager:ToggleInfinityJump(v) self.Player.InfinityJump = v; comingSoon("Infinity Jump") end
+function AbilityManager:ToggleJumpBoost(v) self.Player.JumpBoost = v; comingSoon("Jump Boost") end
+function AbilityManager:SetJumpBoost(val) self.Player.JumpBoostValue = val end
+
+-- Finder
+function AbilityManager:ToggleAutoLoadScript(v) self.Finder.AutoLoadScript = v; comingSoon("Auto Loader") end
+function AbilityManager:ToggleServerHopTarget(v) self.Finder.ServerHopTarget = v; comingSoon("Server Finder") end
+function AbilityManager:SetWebhookURL(url) self.Finder.WebhookURL = url or ""; Rayfield:Notify({ Title = "Webhook", Content = "Saved", Duration = 2 }) end
+function AbilityManager:ToggleHighValueFinder(v) self.Finder.HighValueFinder = v; comingSoon("High-Value Finder") end
+function AbilityManager:SetMoneyThreshold(opt) self.Finder.MoneyThreshold = opt or "50K/s" end
+
+-- Server
+function AbilityManager:ServerHop() TeleportService:Teleport(game.PlaceId, LocalPlayer) end
+function AbilityManager:ClearJobID() self.Server.JobID = ""; Rayfield:Notify({ Title = "Job ID", Content = "Cleared", Duration = 2 }) end
+function AbilityManager:SetJobID(id) self.Server.JobID = tostring(id or ""); Rayfield:Notify({ Title = "Job ID", Content = "Set", Duration = 2 }) end
+function AbilityManager:JoinJobID()
+    if self.Server.JobID == "" then
+        Rayfield:Notify({ Title = "Job ID", Content = "Set a Job ID first", Duration = 3 })
+        return
+    end
+    TeleportService:TeleportToPlaceInstance(game.PlaceId, self.Server.JobID, LocalPlayer)
+end
+function AbilityManager:CopyJobID()
+    local id = self.Server.JobID ~= "" and self.Server.JobID or tostring(game.JobId or "")
+    if id == "" then
+        Rayfield:Notify({ Title = "Job ID", Content = "No Job ID found", Duration = 3 })
+        return
+    end
+    if setclipboard then
+        setclipboard(id)
+        Rayfield:Notify({ Title = "Job ID", Content = "Copied to clipboard", Duration = 3 })
+    else
+        Rayfield:Notify({ Title = "Job ID", Content = "Clipboard not available", Duration = 3 })
+        print("[JobID]", id)
+    end
+end
+
+-- ======================================================
+-- Window
+-- ======================================================
+local Window = Rayfield:CreateWindow({
+    Name = "Bypass Hub | SAB",
+    LoadingTitle = "Steal A Brainrot Script | Bypass Hub",
+    LoadingSubtitle = "by Bypass Hub Devs",
+    ShowText = "Open",
+    Theme = "Default",
+    ToggleUIKeybind = "K",
+    DisableRayfieldPrompts = false,
+    DisableBuildWarnings = false,
+    ConfigurationSaving = { Enabled = true, FileName = "Big Hub" },
+    Discord = { Enabled = false, Invite = "hubssss", RememberJoins = true },
+    KeySystem = false
+})
+
+-- ======================================================
+-- Information Tab
+-- ======================================================
+local InfoTab = Window:CreateTab("Information")
+InfoTab:CreateSection("Main")
+
+InfoTab:CreateLabel("Bypass Hub | SAB")
+InfoTab:CreateLabel("Developed by: Bypass Hub Devs")
+InfoTab:CreateLabel("Version: 1.0.0")
+InfoTab:CreateLabel("Last Updated: August 2025")
+
+InfoTab:CreateParagraph({
+    Title = "Welcome",
+    Content = "This hub provides optimized scripts designed for performance and ease of use. Features marked 'Coming soon' are placeholders."
+})
+
+InfoTab:CreateButton({
+    Name = "Copy Discord Invite",
+    Callback = function()
+        if setclipboard then setclipboard("https://discord.gg/hubssss") end
+        Rayfield:Notify({ Title = "Copied", Content = "Invite copied to clipboard", Duration = 3 })
+    end
+})
+
+InfoTab:CreateButton({
+    Name = "Changelog",
+    Callback = function()
+        Rayfield:Notify({ Title = "Changelog", Content = "v1.0.0 - Initial safe release", Duration = 5 })
+    end
+})
+
+-- ======================================================
+-- Status Tab
+-- ======================================================
+local StatusTab = Window:CreateTab("Status")
+StatusTab:CreateSection("Session Info")
+
+local fpsLabel = StatusTab:CreateLabel("FPS: —")
+local pingLabel = StatusTab:CreateLabel("Ping: —")
+local placeLabel = StatusTab:CreateLabel("PlaceId: " .. tostring(game.PlaceId))
+local jobLabel = StatusTab:CreateLabel("JobId: " .. (tostring(game.JobId) or "—"))
+
+local frames, last = 0, os.clock()
+RunService.RenderStepped:Connect(function()
+    frames += 1
+    local now = os.clock()
+    if now - last >= 1 then
+        local fps = math.floor(frames / (now - last))
+        fpsLabel:Set("FPS: " .. tostring(fps))
+        frames, last = 0, now
+    end
+end)
+
+task.spawn(function()
+    local netstat = Stats and Stats.Network
+    while task.wait(1) do
+        local pingVal = "—"
+        if netstat and netstat.ServerStatsItem then
+            local item = netstat.ServerStatsItem["Data Ping"]
+            if item then pingVal = item:GetValueString() end
+        end
+        pingLabel:Set("Ping: " .. tostring(pingVal))
+        jobLabel:Set("JobId: " .. (AbilityManager.Server.JobID ~= "" and AbilityManager.Server.JobID or game.JobId))
+    end
+end)
+
+-- ======================================================
+-- Server Tab
+-- ======================================================
+local ServerTab = Window:CreateTab("Server")
+ServerTab:CreateSection("Server Tools")
+
+ServerTab:CreateButton({ Name = "Rejoin", Callback = function() TeleportService:Teleport(game.PlaceId, LocalPlayer) end })
+ServerTab:CreateButton({ Name = "Server Hop", Callback = function() AbilityManager:ServerHop() end })
+ServerTab:CreateButton({ Name = "Clear Job-ID", Callback = function() AbilityManager:ClearJobID() end })
+ServerTab:CreateInput({ Name = "Job-ID Input", PlaceholderText = "Enter Job-ID...", RemoveTextAfterFocusLost = false, Callback = function(text) AbilityManager:SetJobID(text) end })
+ServerTab:CreateButton({ Name = "Join Job-ID", Callback = function() AbilityManager:JoinJobID() end })
+ServerTab:CreateButton({ Name = "Copy Job-ID", Callback = function() AbilityManager:CopyJobID() end })
+
+-- ======================================================
+-- Settings Tab
+-- ======================================================
+local SettingsTab = Window:CreateTab("Settings")
+SettingsTab:CreateSection("UI")
+
+SettingsTab:CreateDropdown({
+    Name = "Theme",
+    Options = {"Default","Dark","Light"},
+    CurrentOption = {"Default"},
+    MultipleOptions = false,
+    Callback = function(opt)
+        local theme = opt[1]
+        if Rayfield.SetTheme then
+            Rayfield:SetTheme(theme)
+            Rayfield:Notify({ Title = "Theme", Content = "Applied: " .. theme, Duration = 2 })
+        else
+            Rayfield:Notify({ Title = "Theme", Content = "Theme switching not available", Duration = 3 })
+        end
+    end
+})
+
+-- ======================================================
+-- Stealer / Helper / Player / Finder Tabs
+-- ======================================================
+local StealerTab = Window:CreateTab("Stealer")
+StealerTab:CreateSection("Main Functions")
+StealerTab:CreateToggle({ Name = "Instant Steal", CurrentValue = false, Callback = function(v) AbilityManager:ToggleInstantSteal(v) end })
+StealerTab:CreateToggle({ Name = "Auto Steal", CurrentValue = false, Callback = function(v) AbilityManager:ToggleAutoSteal(v) end })
+
+local HelperTab = Window:CreateTab("Helper")
+HelperTab:CreateSection("ESP & Assist")
+HelperTab:CreateToggle({ Name = "Aim Assist", CurrentValue = false, Callback = function(v) AbilityManager:ToggleAimbot(v) end })
+HelperTab:CreateToggle({ Name = "Brainrot ESP", CurrentValue = false, Callback = function(v) AbilityManager:ToggleBrainrotESP(v) end })
+
+local PlayerTab = Window:CreateTab("Player")
+PlayerTab:CreateSection("Player Mods")
+PlayerTab:CreateToggle({ Name = "Anti Ragdoll", CurrentValue = false, Callback = function(v) AbilityManager:ToggleAntiRagdoll(v) end })
+PlayerTab:CreateToggle({ Name = "Infinity Jump", CurrentValue = false, Callback = function(v) AbilityManager:ToggleInfinityJump(v) end })
+PlayerTab:CreateToggle({ Name = "Speed Boost", CurrentValue = false, Callback = function(v) AbilityManager:ToggleSpeedBoost(v) end })
+PlayerTab:CreateToggle({ Name = "Jump Boost", CurrentValue = false, Callback = function(v) AbilityManager:ToggleJumpBoost(v) end })
+PlayerTab:CreateSlider({ Name = "Jump Boost Value", Range = {0,100}, Increment = 5, CurrentValue = 50, Callback = function(val) AbilityManager:SetJumpBoost(val) end })
+
+local FinderTab = Window:CreateTab("Finder")
+FinderTab:CreateSection("Target Finder")
+FinderTab:CreateToggle({ Name = "Auto Load Script", CurrentValue = false, Callback = function(v) AbilityManager:ToggleAutoLoadScript(v) end })
+FinderTab:CreateToggle({ Name = "Server Hop Target", CurrentValue = false, Callback = function(v) AbilityManager:ToggleServerHopTarget(v) end })
+FinderTab:CreateInput({ Name = "Webhook URL", PlaceholderText = "Enter Webhook URL...", RemoveTextAfterFocusLost = false, Callback = function(text) AbilityManager:SetWebhookURL(text) end })
+FinderTab:CreateToggle({ Name = "Find High Value Server", CurrentValue = false, Callback = function(v) AbilityManager:ToggleHighValueFinder(v) end })
+FinderTab:CreateDropdown({ Name = "Min Money per Sec", Options = {"10K/s","25K/s","50K/s","100K/s"}, CurrentOption = {"50K/s"}, MultipleOptions = false, Callback = function(opt) AbilityManager:SetMoneyThreshold(opt[1]) end })
