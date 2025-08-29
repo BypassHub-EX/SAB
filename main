@@ -1,228 +1,196 @@
-function WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK(code)res=''for i in ipairs(code)do res=res..string.char(code[i]/105)end return res end 
+local a = "https://keysite-production.up.railway.app/public/keys.txt"
+local b = "https://loot-link.com/s?gbTnLVac"
+local c = "LazyDevs_LastKey.txt"
+local d = game:GetService("Players")
+local e = d.LocalPlayer
+local f = game:GetService("TeleportService")
+local g = game:GetService("RunService")
+local h = game:GetService("UserInputService")
 
-
--- =======================================================
--- CONFIG
--- =======================================================
-local KEY_URL = https://keysite-production.up.railway.app/public/keys.txt
-local GET_KEY_LINK = https://loot-link.com/s?gbTnLVac
-local CACHE_FILE = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7980,10185,12810,12705,7140,10605,12390,12075,9975,7980,10185,12075,12180,7875,10605,12705,4830,12180,12600,12180})
-
--- =======================================================
--- SERVICES
--- =======================================================
-local Players = game:GetService(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8400,11340,10185,12705,10605,11970,12075}))
-local LocalPlayer = Players.LocalPlayer
-local TeleportService = game:GetService(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8820,10605,11340,10605,11760,11655,11970,12180,8715,10605,11970,12390,11025,10395,10605}))
-local RunService = game:GetService(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8610,12285,11550,8715,10605,11970,12390,11025,10395,10605}))
-local UserInputService = game:GetService(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8925,12075,10605,11970,7665,11550,11760,12285,12180,8715,10605,11970,12390,11025,10395,10605}))
-local Stats = game:FindFirstChild(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,12180,10185,12180,12075}))
-
--- =======================================================
--- KEY HELPERS
--- =======================================================
-local function fetchKeys()
-    local ok, body = pcall(function() return game:HttpGet(KEY_URL, true) end)
-    if not ok or not body then return {} end
-    local keys = {}
-    for line in string.gmatch(body, WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({9555,9870,9660,11970,9660,11550,9765,4515})) do
-        local key = string.gsub(line, WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({9870,3885,12075,4410,4200,4830,4725,4305,3885,12075,4410,3780}), WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({3885,5145}))
-        if key ~= WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({}) then table.insert(keys, key) end
+local function i()
+    local j, k = pcall(function() return game:HttpGet(a, true) end)
+    if not j or not k then return {} end
+    local l = {}
+    for m in string.gmatch(k, "[^\r\n]+") do
+        local n = string.gsub(m, "^%s*(.-)%s*$", "%1")
+        if n ~= "" then table.insert(l, n) end
     end
-    return keys
+    return l
 end
 
-local function isValidKey(userKey)
-    if not userKey or #userKey == 0 then return false end
-    for _, k in ipairs(fetchKeys()) do
-        if userKey == k then return true end
+local function o(p)
+    if not p or #p == 0 then return false end
+    for _, q in ipairs(i()) do
+        if p == q then return true end
     end
     return false
 end
 
-local function saveCachedKey(key)
-    if writefile then pcall(function() writefile(CACHE_FILE, key) end) end
+local function r(s)
+    if writefile then pcall(function() writefile(c, s) end) end
 end
 
-local function readCachedKey()
-    if readfile and isfile and isfile(CACHE_FILE) then
-        local ok, val = pcall(function() return readfile(CACHE_FILE) end)
-        if ok and val and #val > 0 then return val end
+local function t()
+    if readfile and isfile and isfile(c) then
+        local u, v = pcall(function() return readfile(c) end)
+        if u and v and #v > 0 then return v end
     end
     return nil
 end
 
--- =======================================================
--- LOAD RAYFIELD
--- =======================================================
-local Rayfield = loadstring(game:HttpGet(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({10920,12180,12180,11760,12075,6090,4935,4935,12075,11025,11970,11025,12285,12075,4830,11445,10605,11550,12285,4935,11970,10185,12705,10710,11025,10605,11340,10500})))()
-local HubWindow = Rayfield:CreateWindow({
-    Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7980,10185,12810,12705,3360,7140,10605,12390,12075,3360,13020,3360,8715,6825,6930,3360,7560,12285,10290}),
-    LoadingTitle = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({9135,10605,11340,10395,11655,11445,10605,3360,6930,10185,10395,11235}),
-    LoadingSubtitle = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({6825,12285,12180,10920,10605,11550,12180,11025,10395,10185,12180,11025,11655,11550,3360,8610,10605,11865,12285,11025,11970,10605,10500}),
-    Theme = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8295,10395,10605,10185,11550}),
+local w = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
+local x = w:CreateWindow({
+    Name = "Lazy Devs | SAB Hub",
+    LoadingTitle = "Welcome Back",
+    LoadingSubtitle = "Authentication Required",
+    Theme = "Ocean",
     ToggleUIKeybind = Enum.KeyCode.K,
     KeySystem = false
 })
 
-local hubLoaded, validateBusy = false, false
-local AbilityManager = {
-    Stealer = { InstantSteal = false, AutoSteal = false, DisplayAutoSteal = false, NearestSteal = false, AutoKick = false },
-    Helper  = { Aimbot = false, BrainrotESP = false, TimerESP = false, PlayerESP = false },
-    Player  = { AntiRagdoll = false, SpeedBoost = 16, AirWalk = false, JumpBoost = false, JumpBoostValue = 50 },
-    Finder  = { AutoLoadScript = false, ScriptURL = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({10920,12180,12180,11760,12075,6090,4935,4935,11970,10185,12495,4830,10815,11025,12180,10920,12285,10290,12285,12075,10605,11970,10395,11655,11550,12180,10605,11550,12180,4830,10395,11655,11445,4935,6930,12705,11760,10185,12075,12075,7560,12285,10290,4725,7245,9240,4935,8715,6825,6930,4935,11970,10605,10710,12075,4935,10920,10605,10185,10500,12075,4935,11445,10185,11025,11550,4935,11445,10185,11025,11550}) },
-    Server  = { JobID = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({}) }
+local y, z = false, false
+local A = {
+    B = { C = false, D = false, E = false, F = false, G = false },
+    H = { I = false, J = false, K = false, L = false },
+    M = { N = false, O = 16, P = false, Q = false, R = 50 },
+    S = { T = false, U = "https://raw.githubusercontent.com/BypassHub-EX/SAB/refs/heads/main/main" },
+    V = { W = "" }
 }
 
--- =======================================================
--- MOVEMENT (AIRWALK + BOOSTS)
--- =======================================================
-RunService.Heartbeat:Connect(function()
-    if AbilityManager.Player.AirWalk and LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7560,12285,11445,10185,11550,11655,11025,10500})) then
-        if UserInputService:IsKeyDown(Enum.KeyCode.Space) then
-            LocalPlayer.Character:TranslateBy(Vector3.new(0, 0.5, 0)) -- AirWalk upward
+g.Heartbeat:Connect(function()
+    if A.M.P and e.Character and e.Character:FindFirstChildOfClass("Humanoid") then
+        if h:IsKeyDown(Enum.KeyCode.Space) then
+            e.Character:TranslateBy(Vector3.new(0, 0.5, 0))
         end
     end
-
-    if AbilityManager.Player.JumpBoost and LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7560,12285,11445,10185,11550,11655,11025,10500})) then
-        local humanoid = LocalPlayer.Character:FindFirstChildOfClass(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7560,12285,11445,10185,11550,11655,11025,10500}))
-        humanoid.UseJumpPower = true
-        humanoid.JumpPower = math.min(AbilityManager.Player.JumpBoostValue, 175)
+    if A.M.Q and e.Character and e.Character:FindFirstChildOfClass("Humanoid") then
+        local X = e.Character:FindFirstChildOfClass("Humanoid")
+        X.UseJumpPower = true
+        X.JumpPower = math.min(A.M.R, 175)
     end
-
-    if LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7560,12285,11445,10185,11550,11655,11025,10500})) then
-        LocalPlayer.Character:FindFirstChildOfClass(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7560,12285,11445,10185,11550,11655,11025,10500})).WalkSpeed = AbilityManager.Player.SpeedBoost
+    if e.Character and e.Character:FindFirstChildOfClass("Humanoid") then
+        e.Character:FindFirstChildOfClass("Humanoid").WalkSpeed = A.M.O
     end
 end)
 
--- =======================================================
--- HUB TABS
--- =======================================================
-local function loadHubTabs()
-    if hubLoaded then return end
-    hubLoaded = true
+local function Y()
+    if y then return end
+    y = true
 
-    local InfoTab = HubWindow:CreateTab(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7665,11550,10710,11655,11970,11445,10185,12180,11025,11655,11550}))
-    InfoTab:CreateSection(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8085,10185,11025,11550}))
-    InfoTab:CreateLabel(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7980,10185,12810,12705,3360,7140,10605,12390,12075,3360,13020,3360,8715,6825,6930,3360,7560,12285,10290}))
-    InfoTab:CreateLabel(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7140,10605,12390,10605,11340,11655,11760,10605,10500,3360,10290,12705,3360,7980,10185,12810,12705,3360,7140,10605,12390,12075}))
-    InfoTab:CreateLabel(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({9030,10605,11970,12075,11025,11655,11550,3360,5145,4830,5040,4830,5040}))
-    InfoTab:CreateLabel(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8925,11760,10500,10185,12180,10605,10500,3360,6825,12285,10815,12285,12075,12180,3360,5250,5040,5250,5565}))
+    local Z = x:CreateTab("Information")
+    Z:CreateSection("Main")
+    Z:CreateLabel("Lazy Devs | SAB Hub")
+    Z:CreateLabel("Developed by Lazy Devs")
+    Z:CreateLabel("Version 1.0.0")
+    Z:CreateLabel("Updated August 2025")
 
-    local StealerTab = HubWindow:CreateTab(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,12180,10605,10185,11340,10605,11970}))
-    StealerTab:CreateSection(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,12180,10605,10185,11340,3360,8295,11760,12180,11025,11655,11550,12075}))
-
-    StealerTab:CreateToggle({
-        Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7665,11550,12075,12180,10185,11550,12180,3360,8715,12180,10605,10185,11340}),
+    local _ = x:CreateTab("Stealer")
+    _:CreateSection("Steal Options")
+    _:CreateToggle({
+        Name = "Instant Steal",
         CurrentValue = false,
-        Callback = function(v)
-            AbilityManager.Stealer.InstantSteal = v
-            if v then
-                -- Fake steal logic for demo
-                Rayfield:Notify({Title=WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,12180,10605,10185,11340,10605,11970}), Content=WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({9345,11655,12285,3360,11025,11550,12075,12180,10185,11550,12180,11340,12705,3360,12075,12180,11655,11340,10605,3360,10185,3360,6930,11970,10185,11025,11550,11970,11655,12180,3465}), Duration=3})
-                if AbilityManager.Stealer.AutoKick then
-                    LocalPlayer:Kick(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({9345,11655,12285,3360,10920,10185,12390,10605,3360,12075,12180,11655,11340,10605,11550,3360,10185,3360,6930,11970,10185,11025,11550,11970,11655,12180,3360,23730,13440,15540,3360,6825,12285,12180,11655,7875,11025,10395,11235,3360,10185,10395,12180,11025,12390,10185,12180,10605,10500,3465}))
+        Callback = function(a1)
+            A.B.C = a1
+            if a1 then
+                w:Notify({Title="Stealer", Content="You instantly stole a Brainrot!", Duration=3})
+                if A.B.G then
+                    e:Kick("You have stolen a Brainrot — AutoKick activated!")
                 end
             end
         end
     })
-
-    StealerTab:CreateToggle({
-        Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({6825,12285,12180,11655,3360,8715,12180,10605,10185,11340}),
+    _:CreateToggle({
+        Name = "Auto Steal",
         CurrentValue = false,
-        Callback = function(v)
-            AbilityManager.Stealer.AutoSteal = v
-            if v then
-                Rayfield:Notify({Title=WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,12180,10605,10185,11340,10605,11970}), Content=WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({6825,12285,12180,11655,3360,8715,12180,10605,10185,11340,3360,11970,12285,11550,11550,11025,11550,10815,4830,4830,4830}), Duration=3})
-                if AbilityManager.Stealer.AutoKick then
-                    LocalPlayer:Kick(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({9345,11655,12285,3360,10185,12285,12180,11655,4725,12075,12180,11655,11340,10605,3360,23730,13440,15540,3360,6825,12285,12180,11655,7875,11025,10395,11235,3360,10185,10395,12180,11025,12390,10185,12180,10605,10500,3465}))
+        Callback = function(a2)
+            A.B.D = a2
+            if a2 then
+                w:Notify({Title="Stealer", Content="Auto Steal running...", Duration=3})
+                if A.B.G then
+                    e:Kick("You auto-stole — AutoKick activated!")
                 end
             end
         end
     })
-
-    StealerTab:CreateToggle({
-        Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({6825,12285,12180,11655,3360,7875,11025,10395,11235}),
+    _:CreateToggle({
+        Name = "Auto Kick",
         CurrentValue = false,
-        Callback = function(v) AbilityManager.Stealer.AutoKick = v end
+        Callback = function(a3) A.B.G = a3 end
     })
 
-    local PlayerTab = HubWindow:CreateTab(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8400,11340,10185,12705,10605,11970}))
-    PlayerTab:CreateSection(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8085,11655,12390,10605,11445,10605,11550,12180}))
-    PlayerTab:CreateSlider({ Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,11760,10605,10605,10500,3360,6930,11655,11655,12075,12180}), Range = {16,150}, Increment = 2, Suffix = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({9135,10185,11340,11235,8715,11760,10605,10605,10500}), CurrentValue = 16, Callback = function(val) AbilityManager.Player.SpeedBoost = val end })
-    PlayerTab:CreateToggle({ Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({6825,11025,11970,9135,10185,11340,11235}), CurrentValue = false, Callback = function(v) AbilityManager.Player.AirWalk = v end })
-    PlayerTab:CreateToggle({ Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7770,12285,11445,11760,3360,6930,11655,11655,12075,12180}), CurrentValue = false, Callback = function(v) AbilityManager.Player.JumpBoost = v end })
-    PlayerTab:CreateSlider({ Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7770,12285,11445,11760,3360,6930,11655,11655,12075,12180,3360,9030,10185,11340,12285,10605}), Range = {0,175}, Increment = 5, Suffix = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8400,11655,12495,10605,11970}), CurrentValue = 50, Callback = function(val) AbilityManager.Player.JumpBoostValue = val end })
+    local a4 = x:CreateTab("Player")
+    a4:CreateSection("Movement")
+    a4:CreateSlider({ Name = "Speed Boost", Range = {16,150}, Increment = 2, Suffix = "WalkSpeed", CurrentValue = 16, Callback = function(a5) A.M.O = a5 end })
+    a4:CreateToggle({ Name = "AirWalk", CurrentValue = false, Callback = function(a6) A.M.P = a6 end })
+    a4:CreateToggle({ Name = "Jump Boost", CurrentValue = false, Callback = function(a7) A.M.Q = a7 end })
+    a4:CreateSlider({ Name = "Jump Boost Value", Range = {0,175}, Increment = 5, Suffix = "Power", CurrentValue = 50, Callback = function(a8) A.M.R = a8 end })
 
-    local FinderTab = HubWindow:CreateTab(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7350,11025,11550,10500,10605,11970}))
-    FinderTab:CreateSection(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,10395,11970,11025,11760,12180,12075,3360,4935,3360,8715,10605,11970,12390,10605,11970,12075}))
-    FinderTab:CreateToggle({ Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({6825,12285,12180,11655,3360,7980,11655,10185,10500,3360,8715,10395,11970,11025,11760,12180}), CurrentValue = false, Callback = function(v)
-        AbilityManager.Finder.AutoLoadScript = v
-        if v then
-            local ok, script = pcall(function() return game:HttpGet(AbilityManager.Finder.ScriptURL, true) end)
-            if ok and script then
-                loadstring(script)()
-                Rayfield:Notify({Title=WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7350,11025,11550,10500,10605,11970}),Content=WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,10395,11970,11025,11760,12180,3360,11340,11655,10185,10500,10605,10500,3465}),Duration=3})
+    local a9 = x:CreateTab("Finder")
+    a9:CreateSection("Scripts / Servers")
+    a9:CreateToggle({ Name = "Auto Load Script", CurrentValue = false, Callback = function(a10)
+        A.S.T = a10
+        if a10 then
+            local a11, a12 = pcall(function() return game:HttpGet(A.S.U, true) end)
+            if a11 and a12 then
+                loadstring(a12)()
+                w:Notify({Title="Finder",Content="Script loaded!",Duration=3})
             else
-                Rayfield:Notify({Title=WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7350,11025,11550,10500,10605,11970}),Content=WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7350,10185,11025,11340,10605,10500,3360,12180,11655,3360,11340,11655,10185,10500,3360,12075,10395,11970,11025,11760,12180,4830}),Duration=3})
+                w:Notify({Title="Finder",Content="Failed to load script.",Duration=3})
             end
         end
     end })
-    FinderTab:CreateInput({ Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,10395,11970,11025,11760,12180,3360,8925,8610,7980}), PlaceholderText = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8400,10185,12075,12180,10605,3360,12075,10395,11970,11025,11760,12180,3360,8925,8610,7980,4830,4830,4830}), Callback = function(text) AbilityManager.Finder.ScriptURL = text end })
+    a9:CreateInput({ Name = "Script URL", PlaceholderText = "Paste script URL...", Callback = function(a13) A.S.U = a13 end })
 
-    local ServerTab = HubWindow:CreateTab(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,10605,11970,12390,10605,11970}))
-    ServerTab:CreateSection(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,10605,11970,12390,10605,11970,3360,8820,11655,11655,11340,12075}))
-    ServerTab:CreateButton({ Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8610,10605,11130,11655,11025,11550}), Callback = function() TeleportService:Teleport(game.PlaceId, LocalPlayer) end })
-    ServerTab:CreateButton({ Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7035,11655,11760,12705,3360,7770,11655,10290,3360,7665,7140}), Callback = function() if setclipboard then setclipboard(game.JobId) end end })
+    local a14 = x:CreateTab("Server")
+    a14:CreateSection("Server Tools")
+    a14:CreateButton({ Name = "Rejoin", Callback = function() f:Teleport(game.PlaceId, e) end })
+    a14:CreateButton({ Name = "Copy Job ID", Callback = function() if setclipboard then setclipboard(game.JobId) end end })
 end
 
--- =======================================================
--- KEY TAB
--- =======================================================
-local KeyTab = HubWindow:CreateTab(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7875,10605,12705}))
-KeyTab:CreateSection(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({9030,10185,11340,11025,10500,10185,12180,11025,11655,11550}))
-local statusLabel = KeyTab:CreateLabel(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,12180,10185,12180,12285,12075,6090,3360,11025,10500,11340,10605}))
-local currentKey = readCachedKey() or WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({})
-KeyTab:CreateInput({ Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7245,11550,12180,10605,11970,3360,7875,10605,12705}), PlaceholderText = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8400,10185,12075,12180,10605,3360,12705,11655,12285,11970,3360,11235,10605,12705,4830,4830,4830}), CurrentValue = currentKey, Callback = function(text) currentKey = text end })
-KeyTab:CreateButton({
-    Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({9030,10185,11340,11025,10500,10185,12180,10605,3360,7875,10605,12705}),
+local a15 = x:CreateTab("Key")
+a15:CreateSection("Validation")
+local a16 = a15:CreateLabel("Status: idle")
+local a17 = t() or ""
+a15:CreateInput({ Name = "Enter Key", PlaceholderText = "Paste your key...", CurrentValue = a17, Callback = function(a18) a17 = a18 end })
+a15:CreateButton({
+    Name = "Validate Key",
     Callback = function()
-        if validateBusy or hubLoaded then return end
-        validateBusy = true
-        if currentKey == WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({}) then
-            Rayfield:Notify({ Title = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7875,10605,12705}), Content = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8400,11340,10605,10185,12075,10605,3360,10605,11550,12180,10605,11970,3360,10185,3360,11235,10605,12705,4830}), Duration = 3 })
-            validateBusy = false
+        if z or y then return end
+        z = true
+        if a17 == "" then
+            w:Notify({ Title = "Key", Content = "Please enter a key.", Duration = 3 })
+            z = false
             return
         end
-        if isValidKey(currentKey) then
-            statusLabel:Set(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,12180,10185,12180,12285,12075,6090,3360,23730,16380,13965,3360,9030,10185,11340,11025,10500}))
-            Rayfield:Notify({ Title = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7875,10605,12705}), Content = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7875,10605,12705,3360,10185,10395,10395,10605,11760,12180,10605,10500,4830}), Duration = 3 })
-            saveCachedKey(currentKey)
-            loadHubTabs()
-            KeyTab.TabFrame.Visible = false
-            HubWindow:SelectTab(1)
+        if o(a17) then
+            a16:Set("Status: ✅ Valid")
+            w:Notify({ Title = "Key", Content = "Key accepted.", Duration = 3 })
+            r(a17)
+            Y()
+            a15.TabFrame.Visible = false
+            x:SelectTab(1)
         else
-            statusLabel:Set(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,12180,10185,12180,12285,12075,6090,3360,23730,16485,14700,3360,7665,11550,12390,10185,11340,11025,10500}))
-            Rayfield:Notify({ Title = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7875,10605,12705}), Content = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7665,11550,12390,10185,11340,11025,10500,3360,11235,10605,12705,4830}), Duration = 3 })
+            a16:Set("Status: ❌ Invalid")
+            w:Notify({ Title = "Key", Content = "Invalid key.", Duration = 3 })
         end
-        validateBusy = false
+        z = false
     end
 })
-KeyTab:CreateButton({
-    Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7455,10605,12180,3360,7875,10605,12705}),
+a15:CreateButton({
+    Name = "Get Key",
     Callback = function()
         if setclipboard then
-            setclipboard(GET_KEY_LINK)
-            Rayfield:Notify({ Title = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7455,10605,12180,3360,7875,10605,12705}), Content = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7875,10605,12705,3360,11340,11025,11550,11235,3360,10395,11655,11760,11025,10605,10500,4830}), Duration = 3 })
+            setclipboard(b)
+            w:Notify({ Title = "Get Key", Content = "Key link copied.", Duration = 3 })
         else
-            Rayfield:Notify({ Title = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7455,10605,12180,3360,7875,10605,12705}), Content = GET_KEY_LINK, Duration = 5 })
+            w:Notify({ Title = "Get Key", Content = b, Duration = 5 })
         end
     end
 })
 
-if currentKey ~= WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({}) and isValidKey(currentKey) then
-    statusLabel:Set(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,12180,10185,12180,12285,12075,6090,3360,7035,10185,10395,10920,10605,10500,3360,11235,10605,12705,3360,12390,10185,11340,11025,10500}))
-    loadHubTabs()
-    KeyTab.TabFrame.Visible = false
-    HubWindow:SelectTab(1)
-end    
+if a17 ~= "" and o(a17) then
+    a16:Set("Status: Cached key valid")
+    Y()
+    a15.TabFrame.Visible = false
+    x:SelectTab(1)
+end
