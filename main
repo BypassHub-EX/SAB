@@ -1,1 +1,204 @@
-loadstring("\112\114\105\110\116\40\34\32\89\79\85\82\32\83\67\82\73\80\84\32\72\69\82\69\33\33\32\34\41\10")()  
+local KEY_URL = "https://keysite-production.up.railway.app/public/keys.txt"
+local GET_KEY_LINK = "https://loot-link.com/s?gbTnLVac"
+local CACHE_FILE = "LazyDevs_LastKey.txt"
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local TeleportService = game:GetService("TeleportService")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local Stats = game:FindFirstChild("Stats")
+
+local function fetchKeys()
+    local ok, body = pcall(function() return game:HttpGet(KEY_URL, true) end)
+    if not ok or not body then return {} end
+    local keys = {}
+    for line in string.gmatch(body, "[^\r\n]+") do
+        local key = string.gsub(line, "^%s*(.-)%s*$", "%1")
+        if key ~= "" then table.insert(keys, key) end
+    end
+    return keys
+end
+
+local function isValidKey(userKey)
+    if not userKey or #userKey == 0 then return false end
+    for _, k in ipairs(fetchKeys()) do
+        if userKey == k then return true end
+    end
+    return false
+end
+
+local function saveCachedKey(key)
+    if writefile then pcall(function() writefile(CACHE_FILE, key) end) end
+end
+
+local function readCachedKey()
+    if readfile and isfile and isfile(CACHE_FILE) then
+        local ok, val = pcall(function() return readfile(CACHE_FILE) end)
+        if ok and val and #val > 0 then return val end
+    end
+    return nil
+end
+
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
+local HubWindow = Rayfield:CreateWindow({
+    Name = "Lazy Devs | SAB Hub",
+    LoadingTitle = "Welcome Back",
+    LoadingSubtitle = "Authentication Required",
+    Theme = "Ocean",
+    ToggleUIKeybind = Enum.KeyCode.K,
+    KeySystem = false
+})
+
+local hubLoaded, validateBusy = false, false
+local AbilityManager = {
+    Stealer = { InstantSteal = false, AutoSteal = false, DisplayAutoSteal = false, NearestSteal = false, AutoKick = false },
+    Helper  = { Aimbot = false, BrainrotESP = false, TimerESP = false, PlayerESP = false },
+    Player  = { AntiRagdoll = false, SpeedBoost = false, InfinityJump = false, JumpBoost = false, JumpBoostValue = 50 },
+    Finder  = { AutoLoadScript = false, ServerHopTarget = false, WebhookURL = "", HighValueFinder = false, MoneyThreshold = "50K/s" },
+    Server  = { JobID = "" }
+}
+
+UserInputService.JumpRequest:Connect(function()
+    if AbilityManager.Player.InfinityJump and LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass("Humanoid") then
+        LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
+    end
+end)
+
+RunService.Heartbeat:Connect(function()
+    if AbilityManager.Player.JumpBoost and LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass("Humanoid") then
+        local humanoid = LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+        humanoid.UseJumpPower = true
+        humanoid.JumpPower = AbilityManager.Player.JumpBoostValue
+        humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll, false)
+        humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown, false)
+    end
+end)
+
+local function loadHubTabs()
+    if hubLoaded then return end
+    hubLoaded = true
+
+    local InfoTab = HubWindow:CreateTab("Information")
+    InfoTab:CreateSection("Main")
+    InfoTab:CreateLabel("Lazy Devs | SAB Hub")
+    InfoTab:CreateLabel("Developed by Lazy Devs")
+    InfoTab:CreateLabel("Version 1.0.0")
+    InfoTab:CreateLabel("Updated August 2025")
+
+    local StatusTab = HubWindow:CreateTab("Status")
+    StatusTab:CreateSection("Session Info")
+    local fpsLabel = StatusTab:CreateLabel("FPS: —")
+    local pingLabel = StatusTab:CreateLabel("Ping: —")
+    local jobLabel = StatusTab:CreateLabel("JobId: " .. (tostring(game.JobId) or "—"))
+    StatusTab:CreateLabel("PlaceId: " .. tostring(game.PlaceId))
+    local frames, last = 0, os.clock()
+    RunService.RenderStepped:Connect(function()
+        frames += 1
+        local now = os.clock()
+        if now - last >= 1 then
+            fpsLabel:Set("FPS: " .. tostring(math.floor(frames / (now - last))))
+            frames, last = 0, now
+        end
+    end)
+    task.spawn(function()
+        local netstat = Stats and Stats.Network
+        while task.wait(1) do
+            local pingVal = "—"
+            if netstat and netstat.ServerStatsItem then
+                local item = netstat.ServerStatsItem["Data Ping"]
+                if item then pingVal = item:GetValueString() end
+            end
+            pingLabel:Set("Ping: " .. tostring(pingVal))
+            jobLabel:Set("JobId: " .. game.JobId)
+        end
+    end)
+
+    local StealerTab = HubWindow:CreateTab("Stealer")
+    StealerTab:CreateSection("Steal Options")
+    StealerTab:CreateToggle({ Name = "Instant Steal", CurrentValue = false, Callback = function(v) AbilityManager.Stealer.InstantSteal = v end })
+    StealerTab:CreateToggle({ Name = "Auto Steal", CurrentValue = false, Callback = function(v) AbilityManager.Stealer.AutoSteal = v end })
+    StealerTab:CreateToggle({ Name = "Display Auto Steal", CurrentValue = false, Callback = function(v) AbilityManager.Stealer.DisplayAutoSteal = v end })
+    StealerTab:CreateToggle({ Name = "Nearest Steal", CurrentValue = false, Callback = function(v) AbilityManager.Stealer.NearestSteal = v end })
+    StealerTab:CreateToggle({ Name = "Auto Kick", CurrentValue = false, Callback = function(v) AbilityManager.Stealer.AutoKick = v end })
+
+    local HelperTab = HubWindow:CreateTab("Helper")
+    HelperTab:CreateSection("ESP & Aimbot")
+    HelperTab:CreateToggle({ Name = "Aimbot", CurrentValue = false, Callback = function(v) AbilityManager.Helper.Aimbot = v end })
+    HelperTab:CreateToggle({ Name = "Brainrot ESP", CurrentValue = false, Callback = function(v) AbilityManager.Helper.BrainrotESP = v end })
+    HelperTab:CreateToggle({ Name = "Timer ESP", CurrentValue = false, Callback = function(v) AbilityManager.Helper.TimerESP = v end })
+    HelperTab:CreateToggle({ Name = "Player ESP", CurrentValue = false, Callback = function(v) AbilityManager.Helper.PlayerESP = v end })
+
+    local PlayerTab = HubWindow:CreateTab("Player")
+    PlayerTab:CreateSection("Movement")
+    PlayerTab:CreateToggle({ Name = "Anti-Ragdoll", CurrentValue = false, Callback = function(v) AbilityManager.Player.AntiRagdoll = v end })
+    PlayerTab:CreateToggle({ Name = "Speed Boost", CurrentValue = false, Callback = function(v) AbilityManager.Player.SpeedBoost = v end })
+    PlayerTab:CreateToggle({ Name = "Infinity Jump", CurrentValue = false, Callback = function(v) AbilityManager.Player.InfinityJump = v end })
+    PlayerTab:CreateToggle({ Name = "Jump Boost", CurrentValue = false, Callback = function(v) AbilityManager.Player.JumpBoost = v end })
+    PlayerTab:CreateSlider({ Name = "Jump Boost Value", Range = {0,200}, Increment = 5, Suffix = "Power", CurrentValue = 50, Callback = function(val) AbilityManager.Player.JumpBoostValue = val end })
+
+    local FinderTab = HubWindow:CreateTab("Finder")
+    FinderTab:CreateSection("Scripts / Servers")
+    FinderTab:CreateToggle({ Name = "Auto Load Script", CurrentValue = false, Callback = function(v) AbilityManager.Finder.AutoLoadScript = v end })
+    FinderTab:CreateToggle({ Name = "Server Hop Target", CurrentValue = false, Callback = function(v) AbilityManager.Finder.ServerHopTarget = v end })
+    FinderTab:CreateInput({ Name = "Webhook URL", PlaceholderText = "Paste webhook...", Callback = function(text) AbilityManager.Finder.WebhookURL = text end })
+    FinderTab:CreateToggle({ Name = "Find High Value Server", CurrentValue = false, Callback = function(v) AbilityManager.Finder.HighValueFinder = v end })
+    FinderTab:CreateDropdown({ Name = "Money Threshold", Options = {"50K/s","100K/s","200K/s"}, CurrentOption = {"50K/s"}, MultipleOptions = false, Callback = function(opt) AbilityManager.Finder.MoneyThreshold = opt[1] end })
+
+    local ServerTab = HubWindow:CreateTab("Server")
+    ServerTab:CreateSection("Server Tools")
+    ServerTab:CreateButton({ Name = "Rejoin", Callback = function() TeleportService:Teleport(game.PlaceId, LocalPlayer) end })
+    ServerTab:CreateButton({ Name = "Clear Job ID", Callback = function() AbilityManager.Server.JobID = "" end })
+    ServerTab:CreateInput({ Name = "Set Job ID", PlaceholderText = "Paste JobId...", Callback = function(text) AbilityManager.Server.JobID = text end })
+    ServerTab:CreateButton({ Name = "Join Job ID", Callback = function() if AbilityManager.Server.JobID ~= "" then TeleportService:TeleportToPlaceInstance(game.PlaceId, AbilityManager.Server.JobID, LocalPlayer) end end })
+    ServerTab:CreateButton({ Name = "Copy Job ID", Callback = function() if setclipboard then setclipboard(game.JobId) end end })
+end
+
+local KeyTab = HubWindow:CreateTab("Key")
+KeyTab:CreateSection("Validation")
+local statusLabel = KeyTab:CreateLabel("Status: idle")
+local currentKey = readCachedKey() or ""
+KeyTab:CreateInput({ Name = "Enter Key", PlaceholderText = "Paste your key...", CurrentValue = currentKey, Callback = function(text) currentKey = text end })
+KeyTab:CreateButton({
+    Name = "Validate Key",
+    Callback = function()
+        if validateBusy or hubLoaded then return end
+        validateBusy = true
+        local key = (currentKey or ""):gsub("^%s+",""):gsub("%s+$","")
+        if key == "" then
+            Rayfield:Notify({ Title = "Key", Content = "Please enter a key.", Duration = 3 })
+            validateBusy = false
+            return
+        end
+        if isValidKey(key) then
+            statusLabel:Set("Status: ✅ Valid")
+            Rayfield:Notify({ Title = "Key", Content = "Key accepted.", Duration = 3 })
+            saveCachedKey(key)
+            loadHubTabs()
+            KeyTab.TabFrame.Visible = false
+            HubWindow:SelectTab(1)
+        else
+            statusLabel:Set("Status: ❌ Invalid")
+            Rayfield:Notify({ Title = "Key", Content = "Invalid key.", Duration = 3 })
+        end
+        validateBusy = false
+    end
+})
+KeyTab:CreateButton({
+    Name = "Get Key",
+    Callback = function()
+        if setclipboard then
+            setclipboard(GET_KEY_LINK)
+            Rayfield:Notify({ Title = "Get Key", Content = "Link copied to clipboard.", Duration = 3 })
+        else
+            Rayfield:Notify({ Title = "Get Key", Content = GET_KEY_LINK, Duration = 5 })
+        end
+    end
+})
+
+if currentKey ~= "" and isValidKey(currentKey) then
+    statusLabel:Set("Status: Cached key valid")
+    loadHubTabs()
+    KeyTab.TabFrame.Visible = false
+    HubWindow:SelectTab(1)
+end
