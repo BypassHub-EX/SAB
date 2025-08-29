@@ -1,28 +1,22 @@
-local b='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
-function XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc(data) m=string.sub(data, 0, 55) data=data:gsub(m,'')
-
-data = string.gsub(data, '[^'..b..'=]', '') return (data:gsub('.', function(x) if (x == '=') then return '' end local r,f='',(b:find(x)-1) for i=6,1,-1 do r=r..(f%2^i-f%2^(i-1)>0 and '1' or '0') end return r; end):gsub('%d%d%d?%d?%d?%d?%d?%d?', function(x) if (#x ~= 8) then return '' end local c=0 for i=1,8 do c=c+(x:sub(i,i)=='1' and 2^(8-i) or 0) end return string.char(c) end)) end
-
-
- 
+function WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK(code)res=''for i in ipairs(code)do res=res..string.char(code[i]/105)end return res end 
 
 
 -- =======================================================
 -- CONFIG
 -- =======================================================
-local KEY_URL = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('AAoirYKHUxElifNGTsFRJTukhnTFGThTWJemYGjXdzcoJlCMxGZwjXCaHR0cHM6Ly9rZXlzaXRlLXByb2R1Y3Rpb24udXAucmFpbHdheS5hcHAvcHVibGljL2tleXMudHh0')
-local GET_KEY_LINK = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('HVdSCgZOVSMwEuBdpBXKXkPyWvxkSZGXFYQRRxyGxocWbqdILlatlvSaHR0cHM6Ly9sb290LWxpbmsuY29tL3M/Z2JUbkxWYWM=')
-local CACHE_FILE = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('XVkaevYaFFIEgohgZZLRyhPVHeNaXeFtkQXhgTCGXHejpcnEIrwzpseTGF6eURldnNfTGFzdEtleS50eHQ=')
+local KEY_URL = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({10920,12180,12180,11760,12075,6090,4935,4935,11235,10605,12705,12075,11025,12180,10605,4725,11760,11970,11655,10500,12285,10395,12180,11025,11655,11550,4830,12285,11760,4830,11970,10185,11025,11340,12495,10185,12705,4830,10185,11760,11760,4935,11760,12285,10290,11340,11025,10395,4935,11235,10605,12705,12075,4830,12180,12600,12180})
+local GET_KEY_LINK = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({10920,12180,12180,11760,12075,6090,4935,4935,11340,11655,11655,12180,4725,11340,11025,11550,11235,4830,10395,11655,11445,4935,12075,6615,10815,10290,8820,11550,7980,9030,10185,10395})
+local CACHE_FILE = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7980,10185,12810,12705,7140,10605,12390,12075,9975,7980,10185,12075,12180,7875,10605,12705,4830,12180,12600,12180})
 
 -- =======================================================
 -- SERVICES
 -- =======================================================
-local Players = game:GetService(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('ZLvuQQmBterTmMkaUHXiXXyHcAVyfdTaWCYOAdAcUjmcEGtmcbniUOfUGxheWVycw=='))
+local Players = game:GetService(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8400,11340,10185,12705,10605,11970,12075}))
 local LocalPlayer = Players.LocalPlayer
-local TeleportService = game:GetService(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('rTspzciwHXyDRevRnxSZIRSBiWFgurYHNsvfmsEjoVwrgSsyLScFusRVGVsZXBvcnRTZXJ2aWNl'))
-local RunService = game:GetService(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('HBbtURFZNDRePnWVzcUSLfBpcqWtLckEqTlmmyFYBZTeTZiPZhTADfUUnVuU2VydmljZQ=='))
-local UserInputService = game:GetService(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('xapfFLjpgXCzQKLzRNztusVwrCDvFBjpvkKEayzSOyhRZHmkOaWVGEqVXNlcklucHV0U2VydmljZQ=='))
-local Stats = game:FindFirstChild(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('WmTtuaOQLZHhkUEsaFPtEOrqPQZnOJRsHDcwTjbGnuVnHStaoOPszphU3RhdHM='))
+local TeleportService = game:GetService(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8820,10605,11340,10605,11760,11655,11970,12180,8715,10605,11970,12390,11025,10395,10605}))
+local RunService = game:GetService(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8610,12285,11550,8715,10605,11970,12390,11025,10395,10605}))
+local UserInputService = game:GetService(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8925,12075,10605,11970,7665,11550,11760,12285,12180,8715,10605,11970,12390,11025,10395,10605}))
+local Stats = game:FindFirstChild(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,12180,10185,12180,12075}))
 
 -- =======================================================
 -- KEY HELPERS
@@ -31,9 +25,9 @@ local function fetchKeys()
     local ok, body = pcall(function() return game:HttpGet(KEY_URL, true) end)
     if not ok or not body then return {} end
     local keys = {}
-    for line in string.gmatch(body, XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('bWQsYQGdNkQHKloRMubrmuPbpFeUjOcmPEKDTsjrmmHLnCFXuGbdoMeW15cclxuXSs=')) do
-        local key = string.gsub(line, XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('LOjVMuSZbQEkVVaBRVXTkNbfokcxfBAtPOAABpKMTcySRMorHMinzyFXiVzKiguLSklcyok'), XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('qNIcEsCrUpERzbXQpfCSVHRiqdRelSetMTYGbpBdfDMThXmvMjorlbnJTE='))
-        if key ~= XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('jpRXYsZVnjTFrLERjKwSdDCvianAyBLlnPJrowrmBrFtoEUIypugIdt') then table.insert(keys, key) end
+    for line in string.gmatch(body, WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({9555,9870,9660,11970,9660,11550,9765,4515})) do
+        local key = string.gsub(line, WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({9870,3885,12075,4410,4200,4830,4725,4305,3885,12075,4410,3780}), WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({3885,5145}))
+        if key ~= WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({}) then table.insert(keys, key) end
     end
     return keys
 end
@@ -61,12 +55,12 @@ end
 -- =======================================================
 -- LOAD RAYFIELD
 -- =======================================================
-local Rayfield = loadstring(game:HttpGet(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('bFtJOpjUxLZNZLhHJYkqtpSZrrelWxTETXUNLqRSPwNxoIiLpHrsxOBaHR0cHM6Ly9zaXJpdXMubWVudS9yYXlmaWVsZA==')))()
+local Rayfield = loadstring(game:HttpGet(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({10920,12180,12180,11760,12075,6090,4935,4935,12075,11025,11970,11025,12285,12075,4830,11445,10605,11550,12285,4935,11970,10185,12705,10710,11025,10605,11340,10500})))()
 local HubWindow = Rayfield:CreateWindow({
-    Name = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('rEFfQrJMbckeUXzFvCmtHyHzYEcIZWASvpaRVcKZJCvhAwzweAFVewnTGF6eSBEZXZzIHwgU0FCIEh1Yg=='),
-    LoadingTitle = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('BblxzpJarJFFLTLtBGHMbgVyqcCSHqYRwKEFMLTdEVjuSezBbTWckxsV2VsY29tZSBCYWNr'),
-    LoadingSubtitle = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('vBTHhEfIawAFvRJpaWixwDuaUUfdRMHlmUZrTpncdelQGQLQvdOIilPQXV0aGVudGljYXRpb24gUmVxdWlyZWQ='),
-    Theme = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('GtUxFvwMMlrnrfiaUiDwkyKJdXMcCYdwdFAtqiylCiwZgkQRDHgJTLqT2NlYW4='),
+    Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7980,10185,12810,12705,3360,7140,10605,12390,12075,3360,13020,3360,8715,6825,6930,3360,7560,12285,10290}),
+    LoadingTitle = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({9135,10605,11340,10395,11655,11445,10605,3360,6930,10185,10395,11235}),
+    LoadingSubtitle = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({6825,12285,12180,10920,10605,11550,12180,11025,10395,10185,12180,11025,11655,11550,3360,8610,10605,11865,12285,11025,11970,10605,10500}),
+    Theme = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8295,10395,10605,10185,11550}),
     ToggleUIKeybind = Enum.KeyCode.K,
     KeySystem = false
 })
@@ -76,28 +70,28 @@ local AbilityManager = {
     Stealer = { InstantSteal = false, AutoSteal = false, DisplayAutoSteal = false, NearestSteal = false, AutoKick = false },
     Helper  = { Aimbot = false, BrainrotESP = false, TimerESP = false, PlayerESP = false },
     Player  = { AntiRagdoll = false, SpeedBoost = 16, AirWalk = false, JumpBoost = false, JumpBoostValue = 50 },
-    Finder  = { AutoLoadScript = false, ScriptURL = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('spQBkshlRnJzxjSHRTVczKyKSKEPbbYbfiXxALPfaGciJKeYbXwhUCfaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0J5cGFzc0h1Yi1FWC9TQUIvcmVmcy9oZWFkcy9tYWluL21haW4=') },
-    Server  = { JobID = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('JaZzMGxxvpuYpVlJOytqkKNUtMODenDgmcvvDFEUMTonLSVWHHLyFsh') }
+    Finder  = { AutoLoadScript = false, ScriptURL = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({10920,12180,12180,11760,12075,6090,4935,4935,11970,10185,12495,4830,10815,11025,12180,10920,12285,10290,12285,12075,10605,11970,10395,11655,11550,12180,10605,11550,12180,4830,10395,11655,11445,4935,6930,12705,11760,10185,12075,12075,7560,12285,10290,4725,7245,9240,4935,8715,6825,6930,4935,11970,10605,10710,12075,4935,10920,10605,10185,10500,12075,4935,11445,10185,11025,11550,4935,11445,10185,11025,11550}) },
+    Server  = { JobID = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({}) }
 }
 
 -- =======================================================
 -- MOVEMENT (AIRWALK + BOOSTS)
 -- =======================================================
 RunService.Heartbeat:Connect(function()
-    if AbilityManager.Player.AirWalk and LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('cLFLpINhBUKeMwUnlRjMawqjpuEyOUNYSFMYhciHxhvsqdNSDsFLZNpSHVtYW5vaWQ=')) then
+    if AbilityManager.Player.AirWalk and LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7560,12285,11445,10185,11550,11655,11025,10500})) then
         if UserInputService:IsKeyDown(Enum.KeyCode.Space) then
             LocalPlayer.Character:TranslateBy(Vector3.new(0, 0.5, 0)) -- AirWalk upward
         end
     end
 
-    if AbilityManager.Player.JumpBoost and LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('TAUePNXUDFOAcbyJsJTQESSLzybcRvigZanNtBoVSevkVTEYKugeUpdSHVtYW5vaWQ=')) then
-        local humanoid = LocalPlayer.Character:FindFirstChildOfClass(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('vNZmQcKLWMywePXADIuwsDtTcqJIaSigbucMxgtsKxTyRBudzDmqUlxSHVtYW5vaWQ='))
+    if AbilityManager.Player.JumpBoost and LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7560,12285,11445,10185,11550,11655,11025,10500})) then
+        local humanoid = LocalPlayer.Character:FindFirstChildOfClass(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7560,12285,11445,10185,11550,11655,11025,10500}))
         humanoid.UseJumpPower = true
         humanoid.JumpPower = math.min(AbilityManager.Player.JumpBoostValue, 175)
     end
 
-    if LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('IAHYAbClKwcKzLojhIoUnxvYKgHnhLyiGTTaiSQSpPIAMMgzdxRWOkWSHVtYW5vaWQ=')) then
-        LocalPlayer.Character:FindFirstChildOfClass(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('LAjsOAuNDGoKVRwPlmtRoiAUtFlgIBGXRejdJBhhmXggESiEjlklSqxSHVtYW5vaWQ=')).WalkSpeed = AbilityManager.Player.SpeedBoost
+    if LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7560,12285,11445,10185,11550,11655,11025,10500})) then
+        LocalPlayer.Character:FindFirstChildOfClass(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7560,12285,11445,10185,11550,11655,11025,10500})).WalkSpeed = AbilityManager.Player.SpeedBoost
     end
 end)
 
@@ -108,126 +102,126 @@ local function loadHubTabs()
     if hubLoaded then return end
     hubLoaded = true
 
-    local InfoTab = HubWindow:CreateTab(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('RFFKnlndBKdnmJFtYsYceOBWgQwhFuAnrVgmDglSfYICWrEFUxwXvwNSW5mb3JtYXRpb24='))
-    InfoTab:CreateSection(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('hNKOzjDwNaIwLqnivOBfjjtLKhsxgoilrcBwUzjUrpPeJAgVUrFUUivTWFpbg=='))
-    InfoTab:CreateLabel(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('HTbEMMtjdyuWgMJAiZfgUENARZPjwvMSDrAPrqslQVQKJRJZOoBCDbsTGF6eSBEZXZzIHwgU0FCIEh1Yg=='))
-    InfoTab:CreateLabel(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('QCwNFhCGCqCdpcmELhOhQXOLpzFKnvIyJnYkfHIUtLwHfNTLbEVlTwcRGV2ZWxvcGVkIGJ5IExhenkgRGV2cw=='))
-    InfoTab:CreateLabel(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('vaApwlwGTagOoMHtVmXwbiduNhGUlBHGUiNabmlQUBUkvTLHdEomFskVmVyc2lvbiAxLjAuMA=='))
-    InfoTab:CreateLabel(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('lUTlGzmbaLZodkEjpWYvyvcXRPQcMJGykSAyDilgJLQWzqikxPxnyVQVXBkYXRlZCBBdWd1c3QgMjAyNQ=='))
+    local InfoTab = HubWindow:CreateTab(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7665,11550,10710,11655,11970,11445,10185,12180,11025,11655,11550}))
+    InfoTab:CreateSection(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8085,10185,11025,11550}))
+    InfoTab:CreateLabel(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7980,10185,12810,12705,3360,7140,10605,12390,12075,3360,13020,3360,8715,6825,6930,3360,7560,12285,10290}))
+    InfoTab:CreateLabel(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7140,10605,12390,10605,11340,11655,11760,10605,10500,3360,10290,12705,3360,7980,10185,12810,12705,3360,7140,10605,12390,12075}))
+    InfoTab:CreateLabel(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({9030,10605,11970,12075,11025,11655,11550,3360,5145,4830,5040,4830,5040}))
+    InfoTab:CreateLabel(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8925,11760,10500,10185,12180,10605,10500,3360,6825,12285,10815,12285,12075,12180,3360,5250,5040,5250,5565}))
 
-    local StealerTab = HubWindow:CreateTab(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('ikfhBfSRoTrTiddlOwgxXSygjMqwguZfpMgpBSHQVbspNzuZpryzPAQU3RlYWxlcg=='))
-    StealerTab:CreateSection(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('uKCemwMjIkOnvOjQNffnCAvAQInUieMXFCqzsqJouOUxvNFHonkfluJU3RlYWwgT3B0aW9ucw=='))
+    local StealerTab = HubWindow:CreateTab(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,12180,10605,10185,11340,10605,11970}))
+    StealerTab:CreateSection(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,12180,10605,10185,11340,3360,8295,11760,12180,11025,11655,11550,12075}))
 
     StealerTab:CreateToggle({
-        Name = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('CRjKTdvwRJSLKSpaOyATCcFwCYRjkCJxFfaQoCiQLZTBdZeXmPBjVlZSW5zdGFudCBTdGVhbA=='),
+        Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7665,11550,12075,12180,10185,11550,12180,3360,8715,12180,10605,10185,11340}),
         CurrentValue = false,
         Callback = function(v)
             AbilityManager.Stealer.InstantSteal = v
             if v then
                 -- Fake steal logic for demo
-                Rayfield:Notify({Title=XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('caBJyRrDMTcUlAQMCqPQAvVZRHEiQwgBwIDGsBlrzulmWEQZEqMnNzWU3RlYWxlcg=='), Content=XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('aiXqkVHANLWuorzinwUSWFJlHRLPlUzRRhIjaySjdstYguclTRXwSmsWW91IGluc3RhbnRseSBzdG9sZSBhIEJyYWlucm90IQ=='), Duration=3})
+                Rayfield:Notify({Title=WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,12180,10605,10185,11340,10605,11970}), Content=WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({9345,11655,12285,3360,11025,11550,12075,12180,10185,11550,12180,11340,12705,3360,12075,12180,11655,11340,10605,3360,10185,3360,6930,11970,10185,11025,11550,11970,11655,12180,3465}), Duration=3})
                 if AbilityManager.Stealer.AutoKick then
-                    LocalPlayer:Kick(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('kYuumlTpQgQDSHvIBYWBHEvclUNMVrQUXNHqdeEtqSakoTKNkXbSumuWW91IGhhdmUgc3RvbGVuIGEgQnJhaW5yb3Qg4oCUIEF1dG9LaWNrIGFjdGl2YXRlZCE='))
+                    LocalPlayer:Kick(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({9345,11655,12285,3360,10920,10185,12390,10605,3360,12075,12180,11655,11340,10605,11550,3360,10185,3360,6930,11970,10185,11025,11550,11970,11655,12180,3360,23730,13440,15540,3360,6825,12285,12180,11655,7875,11025,10395,11235,3360,10185,10395,12180,11025,12390,10185,12180,10605,10500,3465}))
                 end
             end
         end
     })
 
     StealerTab:CreateToggle({
-        Name = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('UFocnswJiCeDbQWwuPJPxfchYZpsMEewMnjpXfNMdKHjRTnVQTfztWcQXV0byBTdGVhbA=='),
+        Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({6825,12285,12180,11655,3360,8715,12180,10605,10185,11340}),
         CurrentValue = false,
         Callback = function(v)
             AbilityManager.Stealer.AutoSteal = v
             if v then
-                Rayfield:Notify({Title=XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('qJgQDLDbMOgxVvtutlrnFztPXaYlaBEQJShltzozSzbESUdhoxiEPvhU3RlYWxlcg=='), Content=XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('JRsNpgciPniUDPrcFxtwlZWccucTeNFRvWzkhwfZlIkZXplIkQmMyhCQXV0byBTdGVhbCBydW5uaW5nLi4u'), Duration=3})
+                Rayfield:Notify({Title=WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,12180,10605,10185,11340,10605,11970}), Content=WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({6825,12285,12180,11655,3360,8715,12180,10605,10185,11340,3360,11970,12285,11550,11550,11025,11550,10815,4830,4830,4830}), Duration=3})
                 if AbilityManager.Stealer.AutoKick then
-                    LocalPlayer:Kick(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('kHIEsCxPZGmpuCOGznYcRvUYAzptalVmsRFrewyoCRwxuLIjKChQxeUWW91IGF1dG8tc3RvbGUg4oCUIEF1dG9LaWNrIGFjdGl2YXRlZCE='))
+                    LocalPlayer:Kick(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({9345,11655,12285,3360,10185,12285,12180,11655,4725,12075,12180,11655,11340,10605,3360,23730,13440,15540,3360,6825,12285,12180,11655,7875,11025,10395,11235,3360,10185,10395,12180,11025,12390,10185,12180,10605,10500,3465}))
                 end
             end
         end
     })
 
     StealerTab:CreateToggle({
-        Name = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('hOhhJFVFpyOfkjDJmsxERLjxfPCEjkuSLtTDlyEccvaOJAXDfTTNOHwQXV0byBLaWNr'),
+        Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({6825,12285,12180,11655,3360,7875,11025,10395,11235}),
         CurrentValue = false,
         Callback = function(v) AbilityManager.Stealer.AutoKick = v end
     })
 
-    local PlayerTab = HubWindow:CreateTab(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('nNQFvBAvntECGPgtExxAoJyecUodueobrDjgsOuaTnZIVoajXzflmgKUGxheWVy'))
-    PlayerTab:CreateSection(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('tJLshmIbfevOKJywErsfmXYpFnygccfsFTrIBKkJCneELbsvlghmjONTW92ZW1lbnQ='))
-    PlayerTab:CreateSlider({ Name = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('piBApbhAExxcPQuneJatqvNCEBCxXhjLQiLRGTqrkYIzcmwPIeiNlPnU3BlZWQgQm9vc3Q='), Range = {16,150}, Increment = 2, Suffix = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('VfkrdevRtFcdunCFcTjYBlWyXtCHlJjTULbujStoyfIAytduoQyvbSMV2Fsa1NwZWVk'), CurrentValue = 16, Callback = function(val) AbilityManager.Player.SpeedBoost = val end })
-    PlayerTab:CreateToggle({ Name = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('JMbbXPcFUNfbsBMtghKPomkIVSMHiGwKodkuCTqCTvfCOHFTucfoOIgQWlyV2Fsaw=='), CurrentValue = false, Callback = function(v) AbilityManager.Player.AirWalk = v end })
-    PlayerTab:CreateToggle({ Name = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('MJbBCwBCCtECbxvAtNtdVjJuapmicrMOIYgOuzrkvgXeJZaWxpgtqSESnVtcCBCb29zdA=='), CurrentValue = false, Callback = function(v) AbilityManager.Player.JumpBoost = v end })
-    PlayerTab:CreateSlider({ Name = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('CnTjHXYbsLaxLIAOHjucJEnFYoCQyvOHFvUtLriAkRMyzdDNtkRMVQESnVtcCBCb29zdCBWYWx1ZQ=='), Range = {0,175}, Increment = 5, Suffix = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('yrXhNabqCseCfZtzznRnRKhovZrueWPVNbOKzCZJzMiqiedBrMbjrqcUG93ZXI='), CurrentValue = 50, Callback = function(val) AbilityManager.Player.JumpBoostValue = val end })
+    local PlayerTab = HubWindow:CreateTab(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8400,11340,10185,12705,10605,11970}))
+    PlayerTab:CreateSection(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8085,11655,12390,10605,11445,10605,11550,12180}))
+    PlayerTab:CreateSlider({ Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,11760,10605,10605,10500,3360,6930,11655,11655,12075,12180}), Range = {16,150}, Increment = 2, Suffix = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({9135,10185,11340,11235,8715,11760,10605,10605,10500}), CurrentValue = 16, Callback = function(val) AbilityManager.Player.SpeedBoost = val end })
+    PlayerTab:CreateToggle({ Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({6825,11025,11970,9135,10185,11340,11235}), CurrentValue = false, Callback = function(v) AbilityManager.Player.AirWalk = v end })
+    PlayerTab:CreateToggle({ Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7770,12285,11445,11760,3360,6930,11655,11655,12075,12180}), CurrentValue = false, Callback = function(v) AbilityManager.Player.JumpBoost = v end })
+    PlayerTab:CreateSlider({ Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7770,12285,11445,11760,3360,6930,11655,11655,12075,12180,3360,9030,10185,11340,12285,10605}), Range = {0,175}, Increment = 5, Suffix = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8400,11655,12495,10605,11970}), CurrentValue = 50, Callback = function(val) AbilityManager.Player.JumpBoostValue = val end })
 
-    local FinderTab = HubWindow:CreateTab(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('qjcMmUoJviwpXjHYmrwQNZmMJzAEkuAbuiKNCZTMVJrQaGcNIwINwlpRmluZGVy'))
-    FinderTab:CreateSection(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('PZfNpexvmWvWbonRRNhdoNuqLhGAJimQPbvTIDuKwauojzKcaiyZGcOU2NyaXB0cyAvIFNlcnZlcnM='))
-    FinderTab:CreateToggle({ Name = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('jFxVXcJjJRtkAEzFdKMcmdOQnWjTXVOtFPTYOUiCvKghyblafljSTfPQXV0byBMb2FkIFNjcmlwdA=='), CurrentValue = false, Callback = function(v)
+    local FinderTab = HubWindow:CreateTab(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7350,11025,11550,10500,10605,11970}))
+    FinderTab:CreateSection(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,10395,11970,11025,11760,12180,12075,3360,4935,3360,8715,10605,11970,12390,10605,11970,12075}))
+    FinderTab:CreateToggle({ Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({6825,12285,12180,11655,3360,7980,11655,10185,10500,3360,8715,10395,11970,11025,11760,12180}), CurrentValue = false, Callback = function(v)
         AbilityManager.Finder.AutoLoadScript = v
         if v then
             local ok, script = pcall(function() return game:HttpGet(AbilityManager.Finder.ScriptURL, true) end)
             if ok and script then
                 loadstring(script)()
-                Rayfield:Notify({Title=XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('vTQYCtsiLErSpPFjVNSUDVUmsHyANnMNrghkYfBErVSTlSmaGRuhYuBRmluZGVy'),Content=XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('LgwlpobuxmQprAMftzsrZoBUaKlVWxGjrPutjCulWQrEQNGPqOPAylpU2NyaXB0IGxvYWRlZCE='),Duration=3})
+                Rayfield:Notify({Title=WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7350,11025,11550,10500,10605,11970}),Content=WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,10395,11970,11025,11760,12180,3360,11340,11655,10185,10500,10605,10500,3465}),Duration=3})
             else
-                Rayfield:Notify({Title=XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('WuwKdTznGrfjGuMBxKiCxpvcIUuhKdtjvnnaeZJMtKdXxCDmdOQOsFuRmluZGVy'),Content=XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('pPsNXjaZMtMNjHARzHWYqJlDghJAPujAPgZADIxWEtejLRIeTfADpumRmFpbGVkIHRvIGxvYWQgc2NyaXB0Lg=='),Duration=3})
+                Rayfield:Notify({Title=WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7350,11025,11550,10500,10605,11970}),Content=WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7350,10185,11025,11340,10605,10500,3360,12180,11655,3360,11340,11655,10185,10500,3360,12075,10395,11970,11025,11760,12180,4830}),Duration=3})
             end
         end
     end })
-    FinderTab:CreateInput({ Name = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('aTVSpadJPPWoTdTtbQwmfpHtMDVbKRkfebtvTfyNQqJpKyglsabaOZFU2NyaXB0IFVSTA=='), PlaceholderText = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('jFBMVJgrZZIqdyZpkiiflOpejEftIBzEAmACvLbgWxUdhXVsmFBVCydUGFzdGUgc2NyaXB0IFVSTC4uLg=='), Callback = function(text) AbilityManager.Finder.ScriptURL = text end })
+    FinderTab:CreateInput({ Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,10395,11970,11025,11760,12180,3360,8925,8610,7980}), PlaceholderText = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8400,10185,12075,12180,10605,3360,12075,10395,11970,11025,11760,12180,3360,8925,8610,7980,4830,4830,4830}), Callback = function(text) AbilityManager.Finder.ScriptURL = text end })
 
-    local ServerTab = HubWindow:CreateTab(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('DGLbxfiyURokaYtewAIXLcpNqKAicEmKYEQsKOzVksxknNKxpVKlxqnU2VydmVy'))
-    ServerTab:CreateSection(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('EvQXWobTzLyXxcZAwXDrUsKmYppPYtVSjEuHqZbCKLDmXlOTivLGIBJU2VydmVyIFRvb2xz'))
-    ServerTab:CreateButton({ Name = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('aHenMkmXDpkDstLBWBDWidbgvHlOWMxPDrAamyuDpAwKrpGMpAbmaBfUmVqb2lu'), Callback = function() TeleportService:Teleport(game.PlaceId, LocalPlayer) end })
-    ServerTab:CreateButton({ Name = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('FIazyuCmzOFyLNhAutUIpLKqtsLAitzFdxDFEnxkwPyFKLrDLwGbtPwQ29weSBKb2IgSUQ='), Callback = function() if setclipboard then setclipboard(game.JobId) end end })
+    local ServerTab = HubWindow:CreateTab(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,10605,11970,12390,10605,11970}))
+    ServerTab:CreateSection(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,10605,11970,12390,10605,11970,3360,8820,11655,11655,11340,12075}))
+    ServerTab:CreateButton({ Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8610,10605,11130,11655,11025,11550}), Callback = function() TeleportService:Teleport(game.PlaceId, LocalPlayer) end })
+    ServerTab:CreateButton({ Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7035,11655,11760,12705,3360,7770,11655,10290,3360,7665,7140}), Callback = function() if setclipboard then setclipboard(game.JobId) end end })
 end
 
 -- =======================================================
 -- KEY TAB
 -- =======================================================
-local KeyTab = HubWindow:CreateTab(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('cSEDHIjvsyiLASbtySCTPjqxLeTxrFKVowGTbfuEpnsTgwRhIXnqKyzS2V5'))
-KeyTab:CreateSection(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('iNLbAEHcgtoERiRMicAUXmyJwKAeQIBxqmDNzxLgatnKdugiZuoRniFVmFsaWRhdGlvbg=='))
-local statusLabel = KeyTab:CreateLabel(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('OXYfYYCafvaRlNrFMxXKcJHbSFRJaOTeoPUQVTyCvNZgSswFEVrwSbSU3RhdHVzOiBpZGxl'))
-local currentKey = readCachedKey() or XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('tdFjdxUkmeYlrRtAdOeKzifgopCfPGpWWwKmKolUhUZrbrGYUrsNXOK')
-KeyTab:CreateInput({ Name = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('ZLTssOXyFzMyeJlbigHnHvuRyIILvYIpffDbKUMQdotfTYloaXkwqgfRW50ZXIgS2V5'), PlaceholderText = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('bNDqYXTHbCsEidVxvsuzoNaKWfHPERcmoGwFbxDJjHqGzvDqQiaOJtYUGFzdGUgeW91ciBrZXkuLi4='), CurrentValue = currentKey, Callback = function(text) currentKey = text end })
+local KeyTab = HubWindow:CreateTab(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7875,10605,12705}))
+KeyTab:CreateSection(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({9030,10185,11340,11025,10500,10185,12180,11025,11655,11550}))
+local statusLabel = KeyTab:CreateLabel(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,12180,10185,12180,12285,12075,6090,3360,11025,10500,11340,10605}))
+local currentKey = readCachedKey() or WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({})
+KeyTab:CreateInput({ Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7245,11550,12180,10605,11970,3360,7875,10605,12705}), PlaceholderText = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8400,10185,12075,12180,10605,3360,12705,11655,12285,11970,3360,11235,10605,12705,4830,4830,4830}), CurrentValue = currentKey, Callback = function(text) currentKey = text end })
 KeyTab:CreateButton({
-    Name = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('KCXdgXtFfLYlLhlDWMpGeNhhIFEPxCLooGxsXDrFQyjWKTaWzHrUSDxVmFsaWRhdGUgS2V5'),
+    Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({9030,10185,11340,11025,10500,10185,12180,10605,3360,7875,10605,12705}),
     Callback = function()
         if validateBusy or hubLoaded then return end
         validateBusy = true
-        if currentKey == XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('xLXNKCxbuUCgZNvTNZFqexdxADLDZOhKhQVqRKizkHWRCZtODymWMqT') then
-            Rayfield:Notify({ Title = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('ucfMopyAVdMyheNhVtQuCssakiDlqQKAvmhCzNFXNYkDalRVZNrTRcmS2V5'), Content = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('OgPaexqnEyuwalZiQYFKipOzaGKIgTSokHDZXACLuqLnhLYsfcVabEgUGxlYXNlIGVudGVyIGEga2V5Lg=='), Duration = 3 })
+        if currentKey == WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({}) then
+            Rayfield:Notify({ Title = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7875,10605,12705}), Content = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8400,11340,10605,10185,12075,10605,3360,10605,11550,12180,10605,11970,3360,10185,3360,11235,10605,12705,4830}), Duration = 3 })
             validateBusy = false
             return
         end
         if isValidKey(currentKey) then
-            statusLabel:Set(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('EilwrkmIcpHjrnwJneBNOdZKQgTDvTXSzMPCFzmscFylbloVhDWoxKyU3RhdHVzOiDinIUgVmFsaWQ='))
-            Rayfield:Notify({ Title = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('wxRWaUHPmSTYLDpdIMHiZcYYqsQZqkRrNqmOnzalRuxienIrpOoJUFcS2V5'), Content = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('QWtsrdCqeUelexynWGexkpFYamOThsZHNRpjOiuimOVjFjhRCTGEeHOS2V5IGFjY2VwdGVkLg=='), Duration = 3 })
+            statusLabel:Set(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,12180,10185,12180,12285,12075,6090,3360,23730,16380,13965,3360,9030,10185,11340,11025,10500}))
+            Rayfield:Notify({ Title = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7875,10605,12705}), Content = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7875,10605,12705,3360,10185,10395,10395,10605,11760,12180,10605,10500,4830}), Duration = 3 })
             saveCachedKey(currentKey)
             loadHubTabs()
             KeyTab.TabFrame.Visible = false
             HubWindow:SelectTab(1)
         else
-            statusLabel:Set(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('tBMgMOFeQyEqUQlXOqPnDqIPbbWTNRJXYVIJovbPQfYsSaXDuyTtPYCU3RhdHVzOiDinYwgSW52YWxpZA=='))
-            Rayfield:Notify({ Title = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('nhmraVzpvDkTnnuwyjuZiAyaDJTJEMxZOJzOhSLFqtNuRRJycLrYsvOS2V5'), Content = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('jiCaWdRsraKDiAgXYOJRoXWFJhjESbuHOBWuIgjriiAhPQqkCscrAIoSW52YWxpZCBrZXku'), Duration = 3 })
+            statusLabel:Set(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,12180,10185,12180,12285,12075,6090,3360,23730,16485,14700,3360,7665,11550,12390,10185,11340,11025,10500}))
+            Rayfield:Notify({ Title = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7875,10605,12705}), Content = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7665,11550,12390,10185,11340,11025,10500,3360,11235,10605,12705,4830}), Duration = 3 })
         end
         validateBusy = false
     end
 })
 KeyTab:CreateButton({
-    Name = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('KbwjHIOlDiHpxcaMuxlNayYBUcFRNkPgZHKPamckWzqaCEouGgYOhIHR2V0IEtleQ=='),
+    Name = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7455,10605,12180,3360,7875,10605,12705}),
     Callback = function()
         if setclipboard then
             setclipboard(GET_KEY_LINK)
-            Rayfield:Notify({ Title = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('uSLhhJTnTahmQSSYqsKzosgFaCkqzjfOWLaVVMOxAgfVZMWJldQclnkR2V0IEtleQ=='), Content = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('njQsYgKMxTOTQuoyiNrAxihWTvsItddgSbVnnBOzWnSLIiJbSbgKwihS2V5IGxpbmsgY29waWVkLg=='), Duration = 3 })
+            Rayfield:Notify({ Title = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7455,10605,12180,3360,7875,10605,12705}), Content = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7875,10605,12705,3360,11340,11025,11550,11235,3360,10395,11655,11760,11025,10605,10500,4830}), Duration = 3 })
         else
-            Rayfield:Notify({ Title = XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('MDvLOXLugolknxkYkixfKxPmXdfkyJyyauFlvipUEyJggrJrvjUTCfjR2V0IEtleQ=='), Content = GET_KEY_LINK, Duration = 5 })
+            Rayfield:Notify({ Title = WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({7455,10605,12180,3360,7875,10605,12705}), Content = GET_KEY_LINK, Duration = 5 })
         end
     end
 })
 
-if currentKey ~= XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('qGSzXGqyEAaWxxTjLvpDTFMFHLBToGFQtUdqIwGXzzINHylNXbJhjEk') and isValidKey(currentKey) then
-    statusLabel:Set(XUfamzQGnvXIACeXkUQLcWNwVgBjRVvbpyiFOudrJFEGPiLSRgvfppZsIBielFnesHoslzEfc('mKsgEhhhFDxHknlxbpGPODCuWSNUMyqUUFTcDLJQtbcPqTFufQbjcicU3RhdHVzOiBDYWNoZWQga2V5IHZhbGlk'))
+if currentKey ~= WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({}) and isValidKey(currentKey) then
+    statusLabel:Set(WbBRprjqDTcxeHlLmbQFzgmKqFQWBhntrXqLlQtSldNBiZkBquKFogjnuBaGxDoRIzqRwnVwmQK({8715,12180,10185,12180,12285,12075,6090,3360,7035,10185,10395,10920,10605,10500,3360,11235,10605,12705,3360,12390,10185,11340,11025,10500}))
     loadHubTabs()
     KeyTab.TabFrame.Visible = false
     HubWindow:SelectTab(1)
